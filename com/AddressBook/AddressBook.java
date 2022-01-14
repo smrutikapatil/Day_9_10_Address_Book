@@ -10,12 +10,11 @@ public class AddressBook {
 		System.out.println( "Welcome to Address Book" );
 		AddressBook addressBook = new AddressBook();
 		Scanner scanner = new Scanner(System.in);
-		System.out.println("Welcome to Address book");
 		int i = 0;
 		while (i == 0) {
 
             System.out.println("\n***********Menu*************");
-            System.out.println("1.Add Contact\n" + "2.Edit Contact\n" + "3.Exit ");
+            System.out.println("1.Add Contact\n" + "2.Edit Contact\n" + "3.Delete Contact\n" + "4.Exit ");
             System.out.println("******************************");
             System.out.print("Choose option:");
             
@@ -30,10 +29,15 @@ public class AddressBook {
                     break;
 
                 case 3:
+                	addressBook.deleteContact();
+                	break;
+
+                case 4:
                     i = 1;
                     break;
+                    
                 default:
-                    System.out.println("Choose Correct Choice!!");
+                    System.out.println("Enter Correct Choice!");
              }
          }
  }
@@ -119,9 +123,19 @@ public class AddressBook {
 				break;
 				}
 			}	
-		else {
+		}
+ 	}
+ public void deleteContact() {
+	Scanner sc = new Scanner(System.in);
+	System.out.println("Enter firstName of the person");
+	String deleteName = sc.nextLine();
+    for (int i = 0; i < phoneBook.size(); i++) {
+    	if(phoneBook.get(i).getFirstName().equals(deleteName)) {
+    		System.out.println("Record Deleted  Successfully....!!");
+    		}
+    	else {
 			System.out.println("Please Enter Valid Name !!");
 		   }
-		}
+    	}
  	}
 }
