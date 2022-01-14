@@ -8,40 +8,12 @@ public class AddressBook {
 	
 	public static void main(String[] args) {
 		System.out.println( "Welcome to Address Book" );
-		AddressBook addressBook = new AddressBook();
 		Scanner scanner = new Scanner(System.in);
-		int i = 0;
-		while (i == 0) {
-
-            System.out.println("\n***********Menu*************");
-            System.out.println("1.Add Contact\n" + "2.Edit Contact\n" + "3.Delete Contact\n" + "4.Exit ");
-            System.out.println("******************************");
-            System.out.print("Choose option:");
-            
-            int choice = Integer.parseInt(scanner.nextLine());
-            switch (choice) {
-                case 1:
-                    addressBook.addContact();
-                    break;
-                    
-                case 2:
-                    addressBook.editContact();
-                    break;
-
-                case 3:
-                	addressBook.deleteContact();
-                	break;
-
-                case 4:
-                    i = 1;
-                    break;
-                    
-                default:
-                    System.out.println("Enter Correct Choice!");
-             }
-         }
- }
- public void addContact() {
+		AddressBook addressBook = new AddressBook();
+	    addressBook.getMenu();
+	    addressBook.showContact();
+	}	    
+public void addContact() {
     Person person = new Person();
     Scanner sc = new Scanner(System.in);
     System.out.println("Enter To Create Contact Details in Address Book");
@@ -122,9 +94,12 @@ public class AddressBook {
 				System.out.println("Please Enter valid option!! ");
 				break;
 				}
-			}	
+			}
+		else {
+			System.out.println("Please Enter Valid Name !!");
+		   }
 		}
- 	}
+ }
  public void deleteContact() {
 	Scanner sc = new Scanner(System.in);
 	System.out.println("Enter firstName of the person");
@@ -137,5 +112,48 @@ public class AddressBook {
 			System.out.println("Please Enter Valid Name !!");
 		   }
     	}
- 	}
+ }
+public void showContact() {
+	    System.out.println("Total Number of Contacts : " + phoneBook.size());
+	    System.out.println("********************************************");
+	    if (phoneBook.isEmpty()) {
+	        System.out.println("There are no contacts in the contact list");
+	    } 
+	    else {
+	        System.out.println(phoneBook);
+	        System.out.println("\n*********************************************");
+	    }
+}
+public void getMenu() {
+		Scanner sc = new Scanner(System.in);
+	    boolean exit = false;
+	    do {
+	        System.out.println("\n1. Add Contact \n2. Edit Contact \n3. Delete Contact \n4. View Contacts \n5. Exit ");
+	        int option = sc.nextInt();
+	        sc.nextLine();
+	        switch (option) {
+	            case 1:
+	                addContact();
+	                System.out.println(phoneBook);
+	                break;
+	            case 2:
+	                editContact();
+	                System.out.println(phoneBook);
+	                break;
+	            case 3:
+	                deleteContact();
+	                break;
+	            case 4:
+	                showContact();
+	                break;
+	            case 5:
+	                exit = true;
+	                break;
+	            default:
+	               System.out.print("Enter the Valid Option!");
+	                break;
+	        }
+	    } 
+	    while (!exit);
+	 }
 }
