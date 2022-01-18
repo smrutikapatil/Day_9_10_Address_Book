@@ -103,6 +103,7 @@ public void addContact() {
 			System.out.println("Please Enter Valid Name !!");
 		}
  }
+ 
  public void deleteContact() {
 	 Scanner sc = new Scanner(System.in);
 		System.out.println("Enter firstName of the person");
