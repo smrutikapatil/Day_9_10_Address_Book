@@ -14,7 +14,7 @@ public class AddressBook {
 		while (i == 0) {
 
             System.out.println("\n***********Menu*************");
-            System.out.println("1.Add Contact\n" + "2.Edit Contact\n" + "3.Delete Contact\n" + "4.Exit ");
+            System.out.println("1.Add Contact\n" + "2.Edit Contact\n" + "3.Delete Contact\n" + "4.Show Contact\n" +"5.Exit");
             System.out.println("******************************");
             System.out.print("Choose option:");
             
@@ -31,8 +31,12 @@ public class AddressBook {
                 case 3:
                 	addressBook.deleteContact();
                 	break;
-
+                	
                 case 4:
+                	addressBook.showContact();
+                	break;
+                	
+                case 5:
                     i = 1;
                     break;
                     
@@ -124,18 +128,30 @@ public class AddressBook {
 				}
 			}	
 		}
- 	}
+ }
  public void deleteContact() {
 	Scanner sc = new Scanner(System.in);
 	System.out.println("Enter firstName of the person");
-	String deleteName = sc.nextLine();
+	String deleteName = sc.next();
+	int found = 0;
     for (int i = 0; i < phoneBook.size(); i++) {
     	if(phoneBook.get(i).getFirstName().equals(deleteName)) {
-    		System.out.println("Record Deleted  Successfully....!!");
+    		System.out.println(phoneBook.get(i).getFirstName() + " Deleted.... ");
+    		phoneBook.remove(i);
+    		found++;
     		}
-    	else {
-			System.out.println("Please Enter Valid Name !!");
-		   }
-    	}
- 	}
+        }
+    	if (found == 0) {
+    		System.out.println("Please Enter Valid Name !!");
+	    }
+ }
+ public void showContact() {
+	    System.out.println("********************************************");
+	    if (phoneBook.isEmpty()) {
+	        System.out.println("There are no contacts in the contact list");
+	    } else {
+	        System.out.println(phoneBook);
+	        System.out.println("\n*********************************************");
+	    }
+	}
 }
