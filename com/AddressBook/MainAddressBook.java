@@ -26,7 +26,7 @@ public class MainAddressBook {
 
 		System.out.println("Enter your choice");
 		System.out.println(
-				"1 : Add new contact\n2 : Edit contact\n3 : Delete contact\n4 : Add Multiple Contacts\n5 : Display Contacts\n6 : Search Person");
+				"1 : Add new contact\n2 : Edit contact\n3 : Delete contact\n4 : Add Multiple Contacts\n5 : Display Contacts\n6 : Search Person\n7 : Person with City and State");
 		int choice = sc.nextInt();
 		switch (choice) {
 		case 1:
@@ -126,6 +126,10 @@ public class MainAddressBook {
 			System.out.println("Please Enter the State Name ");
 			String statename = sc.next();
 			addressbooks.searchPerson(cityname, statename);
+			addressbooks.addContacts();
+			break;
+		case 7:
+			viewCityOrStateByPesron();
 			addressbooks.addContacts();
 			break;
 		default:
@@ -306,6 +310,21 @@ public class MainAddressBook {
 
 				System.out.println("This peson not present in this city or state");
 			}
+
+		}
+	}
+
+	public void viewCityOrStateByPesron() {
+		List<Contact> contactsList = new ArrayList<>();
+		for (Map.Entry<String, AddressBook> set : addressBookSystem.entrySet()) {
+			AddressBook addressBook = set.getValue();
+			contactsList = addressBook.getContacts();
+			System.out.println("Person Name and His/her city");
+			contactsList.stream()
+					.forEachOrdered(con -> System.out.println(con.getFirstName() + "     " + con.getCity()));
+			System.out.println("Person Name and His/her State");
+			contactsList.stream()
+					.forEachOrdered(con -> System.out.println(con.getFirstName() + "     " + con.getState()));
 		}
 	}
 }
